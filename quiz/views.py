@@ -7,11 +7,24 @@ TEMPLATE_DIRS = (
     'os.path.join(BASE_DIR, "templates"),'
 )
 def quiz(request):
-    kategori = Kategori.objects.all()
+    nilai = Hasil.objects.filter(user=request.user).values_list('kategori', flat=True)
+    kategori = Kategori.objects.exclude(id__in=nilai)
+    cek = Hasil.objects.filter(user=request.user).exists()
+    print(nilai)
     context = {
-        'kategori':kategori
+        'kategori':kategori,
+        'nilai':nilai,
+        'cek':cek
     }
     return render(request, 'quiz.html',context)
+
+def nilai_quiz(request):
+    nilai = Hasil.objects.filter(user=request.user)
+    print(nilai)
+    context = {
+        'nilai':nilai,
+    }
+    return render(request, 'show/nilai_quiz.html',context)
 
 def question(request,id):
     category = Kategori.objects.get(pk = id)
@@ -25,9 +38,10 @@ def question(request,id):
 def proses(request):
     if request.method == 'POST':
         user = request.user
-        ambil_id = request.POST['ambil_id']
-        tanya = Pertanyaan.objects.filter(kategori=ambil_id)
-        data = Pertanyaan.objects.filter(kategori=ambil_id).count()
+        kategori_id = request.POST['ambil_id']
+        category = Kategori.objects.get(id = kategori_id)
+        tanya = Pertanyaan.objects.filter(kategori=kategori_id)
+        data = Pertanyaan.objects.filter(kategori=kategori_id).count()
         nilai = 0
         for pertanyaan in tanya:
             benar = pertanyaan.jawaban_benar
@@ -40,6 +54,8 @@ def proses(request):
         nilai_sementara = 100 / data
         nilai_akhir = nilai_sementara * nilai
         print(nilai_akhir)
+   
+        Hasil(user = user,kategori=category,total_nilai = nilai_akhir).save()
         messages.info(request,'Anda mendapatkan Nilai ' + str(nilai_akhir) )
 
             

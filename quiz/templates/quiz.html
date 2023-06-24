@@ -65,7 +65,10 @@
                 <h3>Kategori</h3>
                 <p>Fun, Pengetahuan Sosial, Programming</p>
             </div><!-- end title -->
-
+            {% if cek %}
+            <a href="{% url 'nilai_quiz' %}">Lihat nilai anda <b>Disini</b></a>
+            {% else %}
+            {% endif %}
             <div class="row">
                 {% for i in kategori %}
 				<div class="col-md-4">
@@ -80,6 +83,7 @@
                     </div>
                 </div><!-- end col -->
                 {% endfor %}
+
 
                 </div><!-- end col -->
             </div><!-- end row -->
