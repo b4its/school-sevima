@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -177,7 +178,7 @@
 
       <main class="msger-chat">
         <div class="msg left-msg">
-          <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+          <img src="{% static 'ray.jpg' %}" class="msg-img" />
 
           <div class="msg-bubble">
             <div class="msg-info">
@@ -187,6 +188,8 @@
             <div class="msg-text">Halo kak {{user}}, untuk bisa menggunakan layanan kami bisa mengecek fiturnya ya dengan cara ketik kan /help</div>
           </div>
         </div>
+        <!-- batas -->
+        {% for i in pengguna %}
         <div class="msg right-msg">
           <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>
           <div class="msg-bubble">
@@ -194,31 +197,22 @@
               <div class="msg-info-name">{{user}}</div>
             </div>
 
-            <div class="msg-text">Halo kak ray, apa kabar?</div>
+            <div class="msg-text">{{i.pertanyaan}}</div>
           </div>
         </div>
-        <!-- batas -->
+        {% endfor %} {% for i in chat_bot %}
         <div class="msg left-msg">
-          <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+          <img src="{% static 'ray.jpg' %}" class="msg-img" />
 
           <div class="msg-bubble">
             <div class="msg-info">
               <div class="msg-info-name">Ray</div>
             </div>
 
-            <div class="msg-text">{{prompt}}</div>
+            <div class="msg-text" id="kalimat_baru">{{i.penjelasan}}</div>
           </div>
         </div>
-        <div class="msg right-msg">
-          <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>
-          <div class="msg-bubble">
-            <div class="msg-info">
-              <div class="msg-info-name">{{user}}</div>
-            </div>
-
-            <div class="msg-text">{{key}}</div>
-          </div>
-        </div>
+        {% endfor %}
       </main>
 
       <form class="msger-inputarea" action="{% url 'chat' %}" method="POST">
@@ -227,5 +221,9 @@
         <button type="submit" class="msger-send-btn">Send</button>
       </form>
     </section>
+    <script>
+      var elem = document.getElementById("kalimat_baru");
+      elem.innerText = elem.innerText.replace("user", "{{user}}");
+    </script>
   </body>
 </html>
