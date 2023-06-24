@@ -1,0 +1,156 @@
+{% extends 'head.html' %} {% load static %} {% block content %}
+    <title>brsaputra14</title>
+
+<body id="page-top" class="politics_version">
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <div id="main-ld">
+			<div id="loader"></div>
+		</div>
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        Belajar Yuk
+		</a>
+        <button class="navbar-toggler navbar-toggler-right" style="border 1px solid black" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+            </li>
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	<section id="home" class="main-banner parallaxie" style="background: url('{% static 'wpb.jpg' %}')">
+		<div class="heading">
+			<h1 style="font-size:50px;">Mini Quiz</h1>
+
+			</h3>
+		</div>
+	</section>
+
+	<svg id="clouds" class="hidden-xs" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 85 100" preserveAspectRatio="none">
+        <path d="M -5 100 Q 0 20 5 100 Z M 0 100 Q 5 0 10 100 M 5 100 Q 10 30 15 200 M 3 100 Q 14 -3 20 100 M 15 200 Q 20 30 25 100 M 7 99 Q 25 -10 41 100 M 25 100 Q 30 10 35 200 M 18 99 Q 36 9 42 101 M 35 200 Q 40 10 45 100 M 26 97 Q 45 50 50 100 M 28 97 Q 50 20 55 100 M 50 100 Q 55 40 102 84 M 55 100 Q 68 37 65 200 M 42 99 Q 90 50 70 100 M 65 200 Q 70 20 75 100 M 34 101 Q 76 6 80 100 M 75 200 Q 80 30 85 100 M 80 100 Q 85 20 90 100 M 85 100 Q 92 50 95 100 M 90 100 Q 95 25 100 100 M 74 98 Q 94 -5 105 100 Z">
+        </path>
+    </svg>
+
+   
+
+    <div id="about" class="section wb">
+        <div class="container">
+            <div class="section-title text-left">
+                <h3>Kategori</h3>
+                <p>Fun, Pengetahuan Sosial, Programming</p>
+            </div><!-- end title -->
+
+            <div class="row">
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-seo"></i>
+						</div>
+                        <h2>Fun</h2>
+						<p>Pertanyaan quiz bebas, fun game cuman pertanyaan umum aja yang sangat random </p>
+                        <a href="#" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
+						
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-development"></i>
+						</div>
+						<h2>Pengetahuan Sosial</h2>
+						<p>Pertanyaan quiz Pengetahuan sosial, membahas seputar hal yang ada disekitar kamu bisa seperti akademik</p>
+                        <a href="#" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
+				
+                    </div>
+                </div><!-- end col -->
+                
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-process"></i>
+						</div>
+						<h2>Tanya Ray</h2>
+						<p>Tanyakan apa saja, nanti kak ray akan membantu kamu untuk menjawabnya</p>
+                        <a href="#" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
+
+
+					</div>
+                </div><!-- end col -->
+
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+    <div id="services" class="section lb">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="message-box" style="margin-top:5em">
+                        <h2 style="color:black">Albert Einstein</h2>
+                        <p style="font-style:italic;font-size:1eml">  “The important thing is not to stop questioning. Curiosity has its own reason for existing.”
+
+                           </p>
+						<i style="font-style:normal"> Artinya:</i><p> Yang penting jangan sampai berhenti bertanya. Keingintahuan punya alasan tersendiri untuk eksis.</p>
+
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+
+                <div class="col-md-6">
+                    <div class="right-box-pro wow fadeIn">
+                        <img src="{% static 'albert.jpg' %}" style="height:400px" alt="" class="img-fluid img-rounded">
+                    </div><!-- end media -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-left">
+                    <p class="footer-links">
+
+                            <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
+
+                            <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
+
+                            <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+
+                    </p>
+
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2023 developed by :
+					<a href="https://instagram.com/brsaputra14">brsaputra14</a></p>
+                </div>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,185 @@
+{% extends 'head.html' %} {% load static %} {% block content %}
+    <title>brsaputra14</title>
+    <style>
+        form .btn-submit,.submit {
+          display: flex;
+          background: black;
+          color: white;
+          padding: 0.5em;
+          border-radius: 5px;
+          width: 150px;
+          cursor: pointer;
+        }
+        
+        form .btn-submit:focus {
+          color: black;
+          background: white;
+          border: 1px solid black;
+        }
+        form .btn-submit .link-submit {
+          font-size: 14px;
+          text-align: center;
+          color: white;
+          width: 150px;
+        }
+        form .btn-submit .link-submit:focus {
+          font-size: 14px;
+          text-align: center;
+          color: black;
+        }
+        .logout:hover {
+          color: red;
+        }
+      
+        .quiz-slider {
+          width: 100%;
+          overflow: hidden;
+        }
+      
+        .slide {
+          width: 100%;
+          height: 400px;
+          display: none;
+        }
+      </style>
+<body id="page-top" class="politics_version">
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <div id="main-ld">
+			<div id="loader"></div>
+		</div>
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background:black;"id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        Belajar Yuk
+		</a>
+        <button class="navbar-toggler navbar-toggler-right" style="border 1px solid black" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+            </li>
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	<div class="quiz-slider" style="max-height:500px; overflow:auto;margin-top:3.7em;padding:3em;">
+        <form action="{% url 'proses' %}" method="POST">
+        
+          {% for i in quiz %}
+        <div class="slide">
+          <b>{{i.kategori.nama}} </b>
+
+        <h3>{{i.question}}</h3>
+
+        <input type="radio" id="{{i.pilihan_a}}" name="answer{{i.id}}" value="A">
+        <label for="{{i.pilihan_a}}">{{i.pilihan_a}}</label><br>
+        <input type="radio" id="{{i.pilihan_b}}" name="answer{{i.id}}" value="B">
+        <label for="{{i.pilihan_b}}">{{i.pilihan_b}}</label><br>
+        <input type="radio" id="{{i.pilihan_c}}" name="answer{{i.id}}" value="C">
+        <label for="{{i.pilihan_c}}">{{i.pilihan_c}}</label><br>
+        <input type="radio" id="{{i.pilihan_d}}" name="answer{{i.id}}" value="D">
+        <label for="{{i.pilihan_d}}">{{i.pilihan_d}}</label>
+        <input type="hidden" name="benar{{i.id}}"value="{{i.jawaban_benar}}">
+      </div>
+        {% endfor %}
+        <div class="navigation" style="display: flex; flex-direction: row; justify-content: space-between">
+          <b class="prev" style="cursor:pointer">Sebelumnya</b>
+          <b class="next" style="cursor:pointer">Selanjutnya</b>
+          {% csrf_token %}
+          <button class="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-left">
+                    <p class="footer-links">
+
+                            <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
+
+                            <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
+
+                            <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+
+                    </p>
+
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2023 developed by :
+					<a href="https://instagram.com/brsaputra14">brsaputra14</a></p>
+                </div>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const slides = document.querySelectorAll(".slide");
+          let currentSlide = 0;
+    
+          function showSlide(n) {
+            slides[currentSlide].style.display = "none";
+            slides[n].style.display = "block";
+            currentSlide = n;
+    
+            // Memeriksa apakah slide saat ini adalah slide terakhir
+            if (currentSlide === slides.length - 1) {
+              document.querySelector(".submit").style.display = "block"; // Tampilkan tombol submit
+              document.querySelector(".next").style.display = "none"; // Sembunyikan tombol selanjutnya
+            } else {
+              document.querySelector(".submit").style.display = "none"; // Sembunyikan tombol submit
+              document.querySelector(".next").style.display = "block"; // Tampilkan tombol selanjutnya
+            }
+          }
+    
+          function prevSlide() {
+            if (currentSlide === 0) {
+              showSlide(slides.length - 1);
+            } else {
+              showSlide(currentSlide - 1);
+            }
+          }
+    
+          function nextSlide() {
+            if (currentSlide === slides.length - 1) {
+              showSlide(0);
+            } else {
+              showSlide(currentSlide + 1);
+            }
+          }
+    
+          function submitQuiz() {
+            // Logika yang dijalankan saat tombol submit diklik
+            // Anda dapat menambahkan kode untuk memeriksa jawaban dan menampilkan hasil di sini
+          }
+    
+          document.querySelector(".prev").addEventListener("click", prevSlide);
+          document.querySelector(".next").addEventListener("click", nextSlide);
+          document.querySelector(".submit").addEventListener("click", submitQuiz);
+    
+          showSlide(0);
+        });
+      </script>
+
+
+
+{% endblock content %}
