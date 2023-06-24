@@ -11,13 +11,6 @@ pip install django
 
 ```
 
-Openai
-
-```
-pip install openai
-
-```
-
 ## Requirement's
 
 - Python 3.7
@@ -25,8 +18,8 @@ pip install openai
 
 ## Library Python
 
-- openai
+- Django
 
 ## Feature
 
-- Mini Chat GPT
+- Mini Quiz
