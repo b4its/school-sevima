@@ -6,13 +6,15 @@ School-Sevima adalah sebuah aplikasi website yang saya buat untuk mempermudah da
 
 Django
 
-```pip install django
+```
+pip install django
 
 ```
 
 Openai
 
-```pip install openai
+```
+pip install openai
 
 ```
 
