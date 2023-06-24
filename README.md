@@ -20,6 +20,14 @@ pip install django
 
 - Django
 
+## Library Framework's
+
+- Bootstrap 4.4
+- iziToast
+
 ## Feature
 
+- Authenticate
 - Mini Quiz
+- Filter's by user
+- Chat Bot
