@@ -67,11 +67,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+              <a class="nav-link js-scroll-trigger" href="#">{{user}}</a>
             </li>
 
 
@@ -81,7 +79,9 @@
       </div>
     </nav>
 
-	<div class="quiz-slider" style="max-height:500px; overflow:auto;margin-top:3.7em;padding:3em;">
+	<div class="quiz-slider" style="max-height:580px; overflow:auto;margin-top:3.7em;padding:3em;">
+        <a style="text-align:right;display:flex;justify-content: right;justify-items: right;" href="{% url 'quiz' %}">Kembali</a>
+        
         <form action="{% url 'proses' %}" method="POST">
         
           {% for i in quiz %}
@@ -90,7 +90,7 @@
 
         <h3>{{i.question}}</h3>
 
-        <input type="radio" id="{{i.pilihan_a}}" name="answer{{i.id}}" value="A">
+        <input type="radio" id="{{i.pilihan_a}}" name="answer{{i.id}}" required value="A">
         <label for="{{i.pilihan_a}}">{{i.pilihan_a}}</label><br>
         <input type="radio" id="{{i.pilihan_b}}" name="answer{{i.id}}" value="B">
         <label for="{{i.pilihan_b}}">{{i.pilihan_b}}</label><br>
@@ -99,6 +99,7 @@
         <input type="radio" id="{{i.pilihan_d}}" name="answer{{i.id}}" value="D">
         <label for="{{i.pilihan_d}}">{{i.pilihan_d}}</label>
         <input type="hidden" name="benar{{i.id}}"value="{{i.jawaban_benar}}">
+        <input type="hidden" name="ambil_id" value="{{i.kategori.id}}">
       </div>
         {% endfor %}
         <div class="navigation" style="display: flex; flex-direction: row; justify-content: space-between">

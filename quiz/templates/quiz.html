@@ -1,6 +1,7 @@
 {% extends 'head.html' %} {% load static %} {% block content %}
     <title>brsaputra14</title>
-
+    <link rel="stylesheet" href="{% static 'css/iziToast.css' %}">
+<link rel="stylesheet" href="{% static 'css/iziToast.min.css' %}">
 <body id="page-top" class="politics_version">
 
     <!-- LOADER -->
@@ -27,10 +28,13 @@
               <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Kategori</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#">{{user}}</a>
             </li>
 
 
@@ -63,41 +67,19 @@
             </div><!-- end title -->
 
             <div class="row">
+                {% for i in kategori %}
 				<div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
 							<i class="flaticon-seo"></i>
 						</div>
-                        <h2>Fun</h2>
-						<p>Pertanyaan quiz bebas, fun game cuman pertanyaan umum aja yang sangat random </p>
-                        <a href="#" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
+                        <h2>{{i.nama}}</h2>
+						<p>{{i.penjelasan}}</p>
+                        <a href="{% url 'question' i.id %}" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
 						
                     </div>
                 </div><!-- end col -->
-                <div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-development"></i>
-						</div>
-						<h2>Pengetahuan Sosial</h2>
-						<p>Pertanyaan quiz Pengetahuan sosial, membahas seputar hal yang ada disekitar kamu bisa seperti akademik</p>
-                        <a href="#" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
-				
-                    </div>
-                </div><!-- end col -->
-                
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-process"></i>
-						</div>
-						<h2>Tanya Ray</h2>
-						<p>Tanyakan apa saja, nanti kak ray akan membantu kamu untuk menjawabnya</p>
-                        <a href="#" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
-
-
-					</div>
-                </div><!-- end col -->
+                {% endfor %}
 
                 </div><!-- end col -->
             </div><!-- end row -->
@@ -135,7 +117,7 @@
 
                             <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
 
-                            <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
+                            <a class="nav-link js-scroll-trigger" href="#about">Kategori</a>
 
                             <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
 
@@ -149,7 +131,19 @@
     </div><!-- end copyrights -->
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
-
+    <script src="{% static 'js/iziToast.js' %}"></script>
+    <script src="{% static 'js/iziToast.min.js' %}"></script>
+    {% if messages %}
+    {% for message in messages %}
+  <script>
+  
+  iziToast.{{message.tags}}({
+    title: '{{message}}',
+    position: 'topRight'
+  });  
+  </script>
+      {% endfor %}
+      {% endif %}
 
 
 
