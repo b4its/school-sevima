@@ -1,5 +1,5 @@
 {% extends 'head.html' %} {% load static %} {% block content %}
-    <title>brsaputra14</title>
+    <title>Belajar Yuk | Quiz</title>
     <link rel="stylesheet" href="{% static 'css/iziToast.css' %}">
 <link rel="stylesheet" href="{% static 'css/iziToast.min.css' %}">
 <body id="page-top" class="politics_version">
@@ -34,7 +34,8 @@
               <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">{{user}}</a>
+                <a class="nav-link js-scroll-trigger" href="{% url 'profile_saya' %}">{{user}}</a>
+
             </li>
 
 
@@ -64,12 +65,15 @@
             <div class="section-title text-left">
                 <h3>Kategori</h3>
                 <p>Fun, Pengetahuan Sosial, Programming</p>
+                        <a href="{% url 'index' %}" class="sim-btn btn-hover-new" data-text="Kembali" style="margin-top:2em"><span>Kembali</span></a>
+
             </div><!-- end title -->
             {% if cek %}
             <a href="{% url 'nilai_quiz' %}">Lihat nilai anda <b>Disini</b></a>
             {% else %}
             {% endif %}
             <div class="row">
+                {% if kategori %}
                 {% for i in kategori %}
 				<div class="col-md-4">
                     <div class="services-inner-box">
@@ -83,6 +87,9 @@
                     </div>
                 </div><!-- end col -->
                 {% endfor %}
+                {% else %}
+                <h1 style="margin-top:2em"> Wahh anda telah berhasil menyelesaikan semua Mini Quiz yang ada </h1>
+                {% endif %}
 
 
                 </div><!-- end col -->
@@ -124,6 +131,7 @@
                             <a class="nav-link js-scroll-trigger" href="#about">Kategori</a>
 
                             <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+                            <a class="nav-link js-scroll-trigger" href="{% url 'profile_saya' %}">{{user}}</a>
 
                     </p>
 

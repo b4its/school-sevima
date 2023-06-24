@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI - Chat</title>
+        <link rel="stylesheet" href="{% static 'css/iziToast.css' %}">
+<link rel="stylesheet" href="{% static 'css/iziToast.min.css' %}">
     <style>
       :root {
         --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -167,10 +169,10 @@
   <body>
     <section class="msger">
       <header class="msger-header">
-        <div class="msger-header-title"><i class="fas fa-comment-alt"></i> Kembali</div>
+        <div class="msger-header-title"><i class="fas fa-comment-alt"></i>  <a href="{% url 'index' %}" style="color:black;text-decoration: none;">Kembali</a></div>
         <div class="msger-header-title s"><i class="fas fa-comment-alt"></i> Bersihkan Chat</div>
         <div class="msger-header-title s"><i class="fas fa-comment-alt"></i> Bersihkan Chat</div>
-        <div class="msger-header-title"><i class="fas fa-comment-alt"></i> Bersihkan Chat</div>
+        <div class="msger-header-title"><i class="fas fa-comment-alt"></i> <a href="{% url 'cleaner' %}" style="color:black;text-decoration: none;">Bersihkan Chat</a></div>
         <div class="msger-header-options">
           <span><i class="fas fa-cog"></i></span>
         </div>
@@ -189,7 +191,7 @@
           </div>
         </div>
         <!-- batas -->
-        {% for i in pengguna %}
+        {% for b,i in combined_data %}
         <div class="msg right-msg">
           <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>
           <div class="msg-bubble">
@@ -200,27 +202,41 @@
             <div class="msg-text">{{i.pertanyaan}}</div>
           </div>
         </div>
-        {% endfor %} {% for i in chat_bot %}
         <div class="msg left-msg">
-          <img src="{% static 'ray.jpg' %}" class="msg-img" />
-
-          <div class="msg-bubble">
-            <div class="msg-info">
-              <div class="msg-info-name">Ray</div>
+            <img src="{% static 'ray.jpg' %}" class="msg-img" />
+  
+            <div class="msg-bubble">
+              <div class="msg-info">
+                <div class="msg-info-name">Ray</div>
+              </div>
+  
+              <div class="msg-text" id="kalimat_baru">
+                <p style="opacity: 100%"><pre style="white-space: pre-wrap;">{{b.penjelasan}}</pre></p>
+              </div>
             </div>
-
-            <div class="msg-text" id="kalimat_baru">{{i.penjelasan}}</div>
           </div>
-        </div>
         {% endfor %}
       </main>
 
       <form class="msger-inputarea" action="{% url 'chat' %}" method="POST">
         {% csrf_token %}
-        <input type="text" class="msger-input" name="key" placeholder="Enter your message..." />
-        <button type="submit" class="msger-send-btn">Send</button>
+        <input type="text" class="msger-input" name="key" placeholder="Masukkan pesan anda..." />
+        <button type="submit" class="msger-send-btn">Kirim  </button>
       </form>
     </section>
+    <script src="{% static 'js/iziToast.js' %}"></script>
+    <script src="{% static 'js/iziToast.min.js' %}"></script>
+    {% if messages %}
+    {% for message in messages %}
+  <script>
+  
+  iziToast.{{message.tags}}({
+    title: '{{message}}',
+    position: 'topRight'
+  });  
+  </script>
+      {% endfor %}
+      {% endif %}
     <script>
       var elem = document.getElementById("kalimat_baru");
       elem.innerText = elem.innerText.replace("user", "{{user}}");

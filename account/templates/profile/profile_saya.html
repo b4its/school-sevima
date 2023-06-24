@@ -1,5 +1,5 @@
 {% extends 'head.html' %} {% load static %} {% block content %}
-    <title>Belajar Yuk | Nilai</title>
+    <title>brsaputra14</title>
     <link rel="stylesheet" href="{% static 'css/iziToast.css' %}">
 <link rel="stylesheet" href="{% static 'css/iziToast.min.css' %}">
 <body id="page-top" class="politics_version">
@@ -28,11 +28,9 @@
               <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Kategori</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Profile Saya</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#">{{user}}</a>
             </li>
@@ -46,7 +44,7 @@
 
 	<section id="home" class="main-banner parallaxie" style="background: url('{% static 'wpb.jpg' %}')">
 		<div class="heading">
-			<h1 style="font-size:50px;">Mini Quiz</h1>
+			<h1 style="font-size:50px;">Profile Saya</h1>
 
 			</h3>
 		</div>
@@ -61,57 +59,33 @@
 
     <div id="about" class="section wb">
         <div class="container">
-            <div class="section-title text-left">
-                <h3>Kategori</h3>
-                <p>Fun, Pengetahuan Sosial, Programming</p>
-            </div><!-- end title -->
-            <a href="{% url 'quiz' %}">Kembali</a>
-            <div class="row">
-                {% for i in nilai %}
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-                        <p style="text-align:right; color:green" >{{i.total_nilai}}</p>
-                        <div class="ser-icon">
-                            <i class="flaticon-seo"></i>
-						</div>
-                        <h2>{{i.kategori.nama}}</h2>
-						<p>{{i.kategori.penjelasan}}</p>
-                        
-                        <a href="#" class="sim-btn btn-hover-new" <span>Anda sudah mengerjakan quiz ini</span></a>
-						
+
+                    <div class="swiper-container client-swiper" style="max-height: 600px; overflow: auto">
+                      {% if request.user.is_authenticated %}
+                      <a href="{% url 'index' %}" class="sim-btn btn-hover-new" style="justify-content:center;justify-item:center;text-align:center;margin:0 auto;display:flex;margin-bottom: 2em">Kembali</a>
+                      <form action="#" method="POST">
+                        {{akun.as_p}} {{form.as_p}} {% csrf_token %}
+                        <button class="btn btn-warning">Update</button>
+                      </form>
+          
+                      {% else %}
+                      <h2 class="alert text-center">Login terlebih dahulu untuk bisa memberikan kritik dan saran</h2>
+                      {% endif %}
+                      <!-- Add Arrows -->
                     </div>
-                </div><!-- end col -->
-                {% endfor %}
-                <h4 style="margin:0 auto;text-align:center">Nilai keseluruhan anda : {{total_nilai}}</h4>
-
-                </div><!-- end col -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
+                  </div>
+                </div>
+              </div>
+            </section>
 
 
-    <div id="services" class="section lb">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="message-box" style="margin-top:5em">
-                        <h2 style="color:black">Albert Einstein</h2>
-                        <p style="font-style:italic;font-size:1eml">  “The important thing is not to stop questioning. Curiosity has its own reason for existing.”
-
-                           </p>
-						<i style="font-style:normal"> Artinya:</i><p> Yang penting jangan sampai berhenti bertanya. Keingintahuan punya alasan tersendiri untuk eksis.</p>
-
-                    </div><!-- end messagebox -->
-                </div><!-- end col -->
-
-                <div class="col-md-6">
-                    <div class="right-box-pro wow fadeIn">
-                        <img src="{% static 'albert.jpg' %}" style="height:400px" alt="" class="img-fluid img-rounded">
-                    </div><!-- end media -->
                 </div><!-- end col -->
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
+
+
+    
     <div class="copyrights">
         <div class="container">
             <div class="footer-distributed">
@@ -122,8 +96,7 @@
 
                             <a class="nav-link js-scroll-trigger" href="#about">Kategori</a>
 
-                            <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
-
+                            
                     </p>
 
                     <p class="footer-company-name">All Rights Reserved. &copy; 2023 developed by :

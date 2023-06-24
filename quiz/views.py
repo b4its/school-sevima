@@ -19,10 +19,14 @@ def quiz(request):
     return render(request, 'quiz.html',context)
 
 def nilai_quiz(request):
-    nilai = Hasil.objects.filter(user=request.user)
-    print(nilai)
+    nilai_sementara = Hasil.objects.filter(user=request.user)
+    nilai_ = Hasil.objects.filter(user=request.user).count()
+    for i in nilai_sementara:
+        total_nilai = float(i.total_nilai) * nilai_
+    
     context = {
-        'nilai':nilai,
+        'nilai':nilai_sementara,
+        'total_nilai': float(total_nilai)
     }
     return render(request, 'show/nilai_quiz.html',context)
 

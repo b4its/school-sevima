@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import RegistrationForm 
+from .forms import RegistrationForm,profilForm,informasiForm
 # Create your views here.
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -9,6 +9,7 @@ from account.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout,authenticate
 from .helpers import send_forget_password_mail
+
 
 def register(request):
     if request.user.is_authenticated:
@@ -106,3 +107,30 @@ def lupa_password(request):
 		
         
         return render(request, "lupa_password.html")
+
+@login_required
+def profile_saya(request):
+    akunku = Profile.objects.get(user=request.user)
+    akun = informasiForm(instance=request.user)
+    form = profilForm( instance= akunku)
+    if request.method == 'POST':
+        form = profilForm(request.POST, instance=akunku)
+        akun = informasiForm(request.POST,instance=request.user)
+        if form.is_valid() or akun.is_valid():
+            form.save()
+            akun.save()
+            messages.success(request,'Informasi akun anda telah berhasil di ubah !')
+            return redirect('index')
+        else:
+            akunku = Profile.objects.get(user=request.user)
+            form = profilForm(request.POST, instance= akunku)
+            akun = informasiForm(instance=request.user)
+            messages.error(request,'Proses anda telah gagal !')
+            return redirect('index')
+                
+    context = {
+        'form':form,
+        'akun':akun
+
+    }
+    return render(request, "profile/profile_saya.html",context)

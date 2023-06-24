@@ -18,16 +18,16 @@ class Jawaban(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.penjelasan}'
+        return f'{self.kunci}'
 
 class Bot_ai(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
-    kunci = models.ForeignKey(Kunci, on_delete = models.CASCADE)
+    kunci = models.ForeignKey(Kunci,blank=True,null=True, on_delete = models.CASCADE)
     penjelasan = models.TextField(blank=True,null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.kunci.kata_kunci}| {self.penjelasan}'
+        return f'{self.kunci}'
 
 class Pengguna(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)

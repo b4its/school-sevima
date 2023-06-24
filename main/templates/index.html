@@ -1,5 +1,5 @@
 {% extends 'head.html' %} {% load static %} {% block content %}
-    <title>brsaputra14</title>
+    <title>Belajar Yuk</title>
 
 <body id="page-top" class="politics_version">
 
@@ -31,6 +31,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{% url 'profile_saya' %}">{{user}}</a>
             </li>
 
 
@@ -100,7 +103,7 @@
 						</div>
 						<h2>Tanya Ray</h2>
 						<p>Tanyakan apa saja, nanti kak ray akan membantu kamu untuk menjawabnya</p>
-                        <a href="#" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
+                        <a href="{% url 'chat' %}" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
 
 
 					</div>
@@ -145,6 +148,8 @@
                             <a class="nav-link js-scroll-trigger" href="#about">Fitur</a>
 
                             <a class="nav-link js-scroll-trigger" href="#services">Motivation</a>
+            
+                            <a class="nav-link js-scroll-trigger" href="{% url 'profile_saya' %}">{{user}}</a>
 
                     </p>
 
