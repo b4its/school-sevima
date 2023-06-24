@@ -52,5 +52,6 @@ def proses_chat(request):
 def cleaner(request):
     Bot_ai.objects.all().delete()
     Pengguna.objects.all().delete()
+    messages.success(request,'Pesan telah berhasil di hapus ' )
     return redirect('chat')
 

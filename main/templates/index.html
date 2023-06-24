@@ -69,12 +69,23 @@
         <div class="container">
             <div class="section-title text-left">
                 <h3>Fitur</h3>
-                <p>Absensi, Mini Chat GPT</p>
+                <p>Mini Quiz dan Chat Bot</p>
             </div><!-- end title -->
 
             <div class="row">
-				<div class="col-md-4">
+                <div class="col-md-4">
                     <div class="services-inner-box">
+                        <div class="ser-icon">
+                            <img src="{% static 'images/quiz.jpg' %}"style="height:50px;">
+                        </div>
+                        <h2>Mini Quiz</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <a href="{% url 'quiz' %}" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
+                
+                    </div>
+                </div><!-- end col -->
+				<div class="col-md-4">
+                    <div class="services-inner-box" hidden>
 						<div class="ser-icon">
 							<i class="flaticon-seo"></i>
 						</div>
@@ -84,22 +95,11 @@
 						
                     </div>
                 </div><!-- end col -->
-                <div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-development"></i>
-						</div>
-						<h2>Mini Quiz</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="{% url 'quiz' %}" class="sim-btn btn-hover-new" data-text="Lihat"><span>Lihat selengkapnya</span></a>
-				
-                    </div>
-                </div><!-- end col -->
                 
 				<div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
-							<i class="flaticon-process"></i>
+                            <img src="{% static 'images/ray.png' %}"style="height:80px;">
 						</div>
 						<h2>Tanya Ray</h2>
 						<p>Tanyakan apa saja, nanti kak ray akan membantu kamu untuk menjawabnya</p>
