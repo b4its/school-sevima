@@ -72,7 +72,11 @@
                     <div class="services-inner-box">
                         <p style="text-align:right; color:green" >{{i.total_nilai}}</p>
                         <div class="ser-icon">
-                            <i class="flaticon-seo"></i>
+                            {% if i.image %}
+							<img src="{{i.image.url}}" style="height:80px;">
+                            {% else %}
+							<img src="{% static 'images/404-bot.jpg' %}" style="height:80px;">
+                            {% endif %}
 						</div>
                         <h2>{{i.kategori.nama}}</h2>
 						<p>{{i.kategori.penjelasan}}</p>

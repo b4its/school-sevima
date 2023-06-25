@@ -12,6 +12,7 @@ benar = (
 
 class Kategori(models.Model):
     nama = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='kategori/icon',blank=True,null=True)
     penjelasan = models.CharField(max_length=500, blank=True,null=True)
     created = models.DateTimeField(auto_now_add=True)
 
